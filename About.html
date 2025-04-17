@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   
+    <link rel="stylesheet" href="style.css">
+    <title>About Us | COURSE</title>
+    <style>
+        /* Additional CSS for About Us section */
+        .about-banner {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    height: 600px;
+    background-position: center;
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+    margin-bottom: 50px;
+    padding-top: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+        
+        .about-banner h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .about-banner p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            margin-top: 150px;
+        }
+        
+        .about-section {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+            align-items: center;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 50px 0;
+            text-align: center;
+        }
+        
+        .stat-item {
+            margin: 20px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ffb300;
+            margin-bottom: 10px;
+        }
+        
+        .team-section {
+            text-align: center;
+            margin: 60px 0;
+        }
+        
+        .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .team-member {
+            width: 250px;
+            margin-bottom: 30px;
+        }
+        
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 5px solid #ffb300;
+        }
+        /* Add this to your existing style section */
+.hero-buttons {
+    background-color: #ff7b00; /* Orange color */
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    margin-right: 65px;
+    margin-bottom: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(255, 123, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hero-buttons:hover {
+    background-color: #ff9500; /* Lighter orange on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(255, 123, 0, 0.4);
+}
+
+.hero-buttons:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(255, 123, 0, 0.3);
+}
+
+/* Optional: Add a shine effect */
+.hero-buttons::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 50px;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(30deg);
+    transition: all 0.3s;
+}
+
+.hero-buttons:hover::after {
+    left: 120%;
+}
+    </style>
+</head>
+<body>
+    
+
+    <header id="navbar">
+        <div class="logo">
+          <img src="images/logo.png.webp" alt="Logo" />
+          <h2>COURSE</h2>
+        </div>
+        <div class="center-section">
+          <nav>
+            <ul>
+              <li>HOME</li>
+              <li>ABOUT US</li>
+              <li>
+                COURSES
+                <ul>
+                  <li>Web Development</li>
+                  <li>Graphic Design</li>
+                  <li>Data Science</li>
+                  <li>Marketing</li>
+                </ul>
+              </li>
+              <li>TEACHER</li>
+              <li>STORIES</li>
+              <li>CONTACT</li>
+            </ul>
+          </nav>
+          <div class="contact">
+            <i class="fas fa-phone"></i>
+            +43 4566 7788 2457
+          </div>
+        </div>
+      </header>
+    
+      <!-- About Us Banner Section -->
+      <section class="about-banner">
+        <h1>About COURSE</h1>
+        <p>Empowering students with knowledge and skills for the future through innovative learning experiences.</p>
+        <button class="hero-buttons">Explore Our Courses</button>
+      </section>
+      
+      <!-- About Us Content -->
+      <div class="about-content">
+          <section class="about-section">
+              <div class="about-text">
+                  <h2>Our Story</h2>
+                  <p>Founded in 2010, COURSE began as a small initiative to provide quality education in technology fields. What started as a single classroom with 20 students has now grown into a premier educational institution serving thousands of learners worldwide.</p>
+                  <p>Our journey has been marked by innovation, dedication, and a relentless pursuit of excellence in education. We believe in learning by doing, which is why all our courses include hands-on projects and real-world applications.</p>
+              </div>
+              <div class="about-image">
+                  <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Our team working together">
+              </div>
+          </section>
+          
+          <section class="about-section reverse">
+              <div class="about-image">
+                  <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Our mission">
+              </div>
+              <div class="about-text">
+                  <h2>Our Mission</h2>
+                  <p>At COURSE, our mission is to make quality education accessible to everyone, everywhere. We strive to:</p>
+                  <ul>
+                      <li>Provide industry-relevant courses taught by experts</li>
+                      <li>Create an inclusive learning environment for all students</li>
+                      <li>Bridge the gap between academia and industry requirements</li>
+                      <li>Foster innovation and critical thinking</li>
+                      <li>Support lifelong learning and career advancement</li>
+                  </ul>
+              </div>
+          </section>
+          
+          <div class="stats">
+              <div class="stat-item">
+                  <div class="stat-number">10,000+</div>
+                  <div class="stat-label">Students Enrolled</div>
+              </div>
+              <div class="stat-item">
+                  <div class="stat-number">200+</div>
+                  <div class="stat-label">Courses Offered</div>
+              </div>
+              <div class="stat-item">
+                  <div class="stat-number">95%</div>
+                  <div class="stat-label">Completion Rate</div>
+              </div>
+              <div class="stat-item">
+                  <div class="stat-number">50+</div>
+                  <div class="stat-label">Countries Reached</div>
+              </div>
+          </div>
+          
+          <section class="team-section">
+              <h2>Meet Our Teachers</h2>
+              <p>Our experienced educators and industry professionals are dedicated to your success.</p>
+              
+              <div class="team-members">
+                  <div class="team-member">
+                      <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Sarah Johnson">
+                      <h3>Sarah Johnson</h3>
+                      <p>Founder & CEO</p>
+                  </div>
+                  <div class="team-member">
+                      <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen">
+                      <h3>Michael Chen</h3>
+                      <p>Chief Academic Officer</p>
+                  </div>
+                  <div class="team-member">
+                      <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Priya Patel">
+                      <h3>Priya Patel</h3>
+                      <p>Director of Technology</p>
+                  </div>
+                  <div class="team-member">
+                      <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="David Kim">
+                      <h3>David Kim</h3>
+                      <p>Head of Student Success</p>
+                  </div>
+              </div>
+          </section>
+      </div>
+      
+      <section>
+        <div class="newsletter-section">
+          <div class="line"></div>
+          <h2>Subscribe to newsletter</h2>
+          <div class="form-container">
+            <input type="email" placeholder="Email Address" />
+            <button>Subscribe</button> 
+          </div>
+        </div>
+        <hr>
+        <footer>
+          
+          <div class="footer-container">
+           
+            <div class="footer-col">
+              <div class="footer-logo">
+                <img src="images/logo.png.webp" alt="Logo" />
+                <h2>COURSE</h2>
+              </div>
+              <p class="footer-text">
+                In aliquam, augue a gravida rutrum, ante nisl fermentum nulla, vitae tempor nisl ligula vel nunc. Proin quis mi malesuada, finibus tortor fermentum, tempor lacus.
+              </p>
+            </div>
+        
+           
+            <div class="footer-col">
+              <h3>Menu</h3>
+              <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Courses</a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+        
+           
+            <div class="footer-col">
+              <h3>Usefull Links</h3>
+              <ul>
+                <li><a href="#">Testimonials</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Community</a></li>
+                <li><a href="#">Campus Pictures</a></li>
+                <li><a href="#">Tuitions</a></li>
+              </ul>
+            </div>
+        
+                 <div class="footer-col contact-info">
+              <h3>Contact</h3>
+              <p><i class="fas fa-map-marker-alt"></i>DHA Phase 5 Karachi</p>
+              <p><i class="fas fa-phone-alt"></i>0307 4360 673</p>
+              <p><i class="fas fa-envelope"></i>shandeveloper24@gmail.com</p>
+            </div>
+          </div>
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; padding-top: 20px; color: #aaa; font-size: 14px; border-top: 1px solid #333;">
+          <div>
+            Copyright ©2025 All rights reserved | This template is made with 
+            <i class="fas fa-heart" style="color: #ffb300;"></i> by <a href="#" style="color: #ffb300; text-decoration: none;">AGHA SHAN</a>
+          </div>
+          <div class="social-icons" style="margin-top: 10px;">
+            <a href="#"><i class="fab fa-pinterest"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+        </footer>
+      </section>
+      <script>
+        window.addEventListener('scroll', () => {
+          const navbar = document.getElementById('navbar');
+          if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+          } else {
+            navbar.classList.remove('scrolled');
+          }
+        });
+      </script>
+
+</body>
+</html>
