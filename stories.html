@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Stories</title>
+    <style>
+        /* Additional styles for stories page */
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/storybanner.jfif');
+            background-size: cover;
+            height: 600px;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            margin-bottom: 50px;
+        }
+        
+        .hero-section h1 {
+          margin-top: 120px;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 50px 0;
+            font-size: 2.5rem;
+            color: #333;
+        }
+        
+        .story-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding: 0 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .story-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 350px;
+            transition: transform 0.3s;
+        }
+        
+        .story-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .story-image {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .story-card:hover .story-image img {
+            transform: scale(1.1);
+        }
+        
+        .story-content {
+            padding: 20px;
+        }
+        
+        .story-content h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        
+        .story-content p {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: #ffb300;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .teacher-badge {
+            background: #ffb300;
+        }
+        
+        .achievement-badge {
+            background: #ffb300;
+        }
+        
+        .testimonial-section {
+            /* background: #f9f9f9; */
+            padding: 50px 20px;
+            text-align: center;
+        }
+        
+        .testimonial {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            color: rgb(255, 255, 255);
+            line-height: 1.8;
+        }
+        
+        .testimonial-author {
+            margin-top: 20px;
+            font-weight: bold;
+            font-style: normal;
+            color:white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 30px 0;
+            font-size: 2.5rem;
+        }
+        
+        .stats-section {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 50px 20px;
+            background: #2c6299;
+            color: white;
+            text-align: center;
+        }
+        
+        .stat-item {
+            margin: 20px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ffb300;
+        }
+        
+        .stat-label {
+            font-size: 1.2rem;
+        }
+        
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 45px;
+            
+        }
+        
+        .tab-button {
+            padding: 10px 20px;
+            background: #eee;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .tab-button.active {
+            background: #ffb300;
+            color: white;
+        }
+        
+        .tab-button:first-child {
+            border-radius: 5px 0 0 5px;
+        }
+        
+        .tab-button:last-child {
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header id="navbar">
+        <div class="logo">
+            <img src="images/logo.png.webp" alt="Logo" />
+            <h2>COURSE</h2>
+        </div>
+        <div class="center-section">
+            <nav>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="About.html">ABOUT US</a></li>
+                    <li>
+                        <a href="courses.html">COURSES</a>
+                        <ul>
+                            <li>Web Development</li>
+                            <li>Graphic Design</li>
+                            <li>Data Science</li>
+                            <li>Marketing</li>
+                        </ul>
+                    </li>
+                    <li><a href="teacher.html">TEACHER</a></li>
+                    <li><a href="stories.html">STORIES</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+            </nav>
+            <div class="contact">
+                <i class="fas fa-phone"></i>
+                +43 4566 7788 2457
+            </div>
+        </div>
+    </header>
+
+    <div class="hero-section">
+        <h1>Our Success Stories</h1>
+        <p>Discover how COURSE has transformed lives through education</p>
+    </div>
+
+    <div class="tabs">
+        <button class="tab-button active" onclick="openTab('teachers')">Teacher Stories</button>
+        <button class="tab-button" onclick="openTab('students')">Student Success</button>
+    </div>
+
+    <div id="teachers" class="tab-content active">
+        <h2 class="section-title">Our Inspiring Teachers</h2>
+        
+        <div class="story-container">
+            <div class="story-card">
+                <div class="story-image">
+                    <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Dr. Sarah Johnson">
+                </div>
+                <div class="story-content">
+                    <span class="badge teacher-badge">Lead Instructor</span>
+                    <span class="badge achievement-badge">10+ Years Experience</span>
+                    <h3>Dr. Sarah Johnson</h3>
+                    <p>With a PhD in Computer Science from MIT, Dr. Johnson brings a wealth of knowledge to our Data Science program. Her innovative teaching methods have helped over 500 students land jobs at top tech firms.</p>
+                    <p><strong>Notable Achievement:</strong> Developed the "Data Science for Everyone" curriculum adopted by 15 universities worldwide.</p>
+                </div>
+            </div>
+            
+            <div class="story-card">
+                <div class="story-image">
+                    <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Michael Chen">
+                </div>
+                <div class="story-content">
+                    <span class="badge teacher-badge">Senior Developer</span>
+                    <span class="badge achievement-badge">Google Certified</span>
+                    <h3>Michael Chen</h3>
+                    <p>Former lead developer at Google, Michael now dedicates his time to teaching the next generation of web developers. His students consistently rate his classes as the most practical and industry-relevant.</p>
+                    <p><strong>Notable Achievement:</strong> 98% of his students secure jobs within 3 months of course completion.</p>
+                </div>
+            </div>
+            
+            <div class="story-card">
+                <div class="story-image">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Elena Rodriguez">
+                </div>
+                <div class="story-content">
+                    <span class="badge teacher-badge">Creative Director</span>
+                    <span class="badge achievement-badge">Award Winner</span>
+                    <h3>Elena Rodriguez</h3>
+                    <p>With her graphic design work featured in international exhibitions, Elena brings real-world creative experience to the classroom. She specializes in helping students develop unique portfolios.</p>
+                    <p><strong>Notable Achievement:</strong> Her students have won 23 design competitions in the past 2 years.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="students" class="tab-content">
+        <h2 class="section-title">Student Success Stories</h2>
+        
+        <div class="story-container">
+            <div class="story-card">
+                <div class="story-image">
+                    <img src="images/sara.jfif" alt="Aisha Khan">
+                </div>
+                <div class="story-content">
+                    <span class="badge achievement-badge">Web Developer</span>
+                    <span class="badge">Graduated 2023</span>
+                    <h3>Aisha Khan</h3>
+                    <p>From complete beginner to junior developer at Amazon in just 9 months. Aisha's dedication and our Full Stack Development program helped her make an incredible career change.</p>
+                    <p><strong>Quote:</strong> "The hands-on projects gave me the confidence to apply for jobs I never thought I could get."</p>
+                </div>
+            </div>
+            
+            <div class="story-card">
+                <div class="story-image">
+                    <img src="images/devid.jfif" alt="David Miller">
+                </div>
+                <div class="story-content">
+                    <span class="badge achievement-badge">Data Scientist</span>
+                    <span class="badge">Graduated 2022</span>
+                    <h3>David Miller</h3>
+                    <p>After completing our Data Science bootcamp, David developed a machine learning model that helps detect early signs of diabetes, now being piloted in 3 hospitals.</p>
+                    <p><strong>Quote:</strong> "The mentorship I received was invaluable in turning my idea into a real-world solution."</p>
+                </div>
+            </div>
+            
+            <div class="story-card">
+                <div class="story-image">
+                    <img src="images/emma.jfif" alt="Sophia Martinez">
+                </div>
+                <div class="story-content">
+                    <span class="badge achievement-badge">UX Designer</span>
+                    <span class="badge">Graduated 2024</span>
+                    <h3>Sophia Martinez</h3>
+                    <p>Sophia's portfolio created during our UX/UI Design course caught the attention of Spotify's design team, leading to her dream job before she even graduated.</p>
+                    <p><strong>Quote:</strong> "The career coaching sessions helped me present my work in ways I wouldn't have thought of on my own."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="testimonial-section">
+        <h2 class="section-title">What Our Community Says</h2>
+        <div class="testimonial">
+            "COURSE didn't just teach me skills—it transformed my entire career trajectory. The support from instructors and the practical curriculum gave me the tools to succeed in ways traditional education never did."
+        </div>
+        <div class="testimonial-author">
+            - Jamal Williams, Senior Developer at Microsoft (Graduate 2021)
+        </div>
+    </div>
+
+    <div class="stats-section">
+        <div class="stat-item">
+            <div class="stat-number">5,000+</div>
+            <div class="stat-label">Students Trained</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">94%</div>
+            <div class="stat-label">Job Placement Rate</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Industry Expert Instructors</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">15</div>
+            <div class="stat-label">Countries Reached</div>
+        </div>
+    </div>
+
+    <section>
+        <div class="newsletter-section">
+            <div class="line"></div>
+            <h2>Subscribe to newsletter</h2>
+            <div class="form-container">
+                <input type="email" placeholder="Email Address" />
+                <button>Subscribe</button> 
+            </div>
+        </div>
+        <hr>
+        <footer>
+            <div class="footer-container">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="images/logo.png.webp" alt="Logo" />
+                        <h2>COURSE</h2>
+                    </div>
+                    <p class="footer-text">
+                        In aliquam, augue a gravida rutrum, ante nisl fermentum nulla, vitae tempor nisl ligula vel nunc. Proin quis mi malesuada, finibus tortor fermentum, tempor lacus.
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h3>Menu</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="About.html">About Us</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="teacher.html">Teachers</a></li>
+                        <li><a href="stories.html">Stories</a></li>
+                        <li><a href="Contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Usefull Links</h3>
+                    <ul>
+                        <li><a href="#">Testimonials</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">Campus Pictures</a></li>
+                        <li><a href="#">Tuitions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col contact-info">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-map-marker-alt"></i>DHA Phase 5 Karachi</p>
+                    <p><i class="fas fa-phone-alt"></i>0307 4360 673</p>
+                    <p><i class="fas fa-envelope"></i>shandeveloper24@gmail.com</p>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; padding-top: 20px; color: #aaa; font-size: 14px; border-top: 1px solid #333;">
+                <div>
+                    Copyright ©2025 All rights reserved | This template is made with 
+                    <i class="fas fa-heart" style="color: #ffb300;"></i> by <a href="#" style="color: #ffb300; text-decoration: none;">AGHA SHAN</a>
+                </div>
+                <div class="social-icons" style="margin-top: 10px;">
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </footer>
+    </section>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        function openTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.getElementsByClassName('tab-content');
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove('active');
+            }
+            
+            // Remove active class from all buttons
+            const tabButtons = document.getElementsByClassName('tab-button');
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove('active');
+            }
+            
+            // Show the selected tab and mark button as active
+            document.getElementById(tabName).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>

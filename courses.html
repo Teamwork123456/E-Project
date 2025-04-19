@@ -4,116 +4,549 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-   
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Courses</title>
+    <style>
+        .course-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/How-To-Create-Engaging-Training-Videos-In-8-Easy-Steps.jpg') no-repeat center center;
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            height: 600px;
+            padding: 100px 20px;
+            margin-bottom: 50px;
+        }
+        
+        .course-hero h1 {
+            font-size: 3rem;
+            margin-top: 120px;
+            margin-bottom: 20px;
+        }
+        
+        .course-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 10px auto;
+        }
+        
+        .courses-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 0 50px;
+            margin-bottom: 50px;
+        }
+        
+        .course-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .course-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .course-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .course-card:hover .course-image img {
+            transform: scale(1.1);
+        }
+        
+        .course-content {
+            padding: 20px;
+        }
+        
+        .course-content h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            color: #666;
+        }
+        
+        .course-price {
+            font-weight: bold;
+            color: #ffb300;
+            font-size: 1.2rem;
+        }
+        
+        .course-duration {
+            display: flex;
+            align-items: center;
+        }
+        
+        .course-duration i {
+            margin-right: 5px;
+        }
+        
+        .course-description {
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .enroll-btn {
+            display: inline-block;
+            background-color: #ffb300;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        
+        .enroll-btn:hover {
+            background-color: #e6a000;
+        }
+        
+        .top-courses {
+            background-color: #f9f9f9;
+            padding: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .top-courses h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+        }
+        
+        .top-course-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .top-course-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .top-course-header {
+            background-color: #ffb300;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .top-course-body {
+            padding: 20px;
+        }
+        
+        .topper {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .topper:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .topper-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .topper-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .topper-info h4 {
+            margin: 0 0 5px 0;
+        }
+        
+        .topper-info p {
+            margin: 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .topper-score {
+            color: #ffb300;
+            font-weight: bold;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: #ffb300;
+            margin: 15px auto 0;
+        }
+    </style>
 </head>
 <body>
     
 
-    <header id="navbar">
-        <div class="logo">
-          <img src="images/logo.png.webp" alt="Logo" />
-          <h2>COURSE</h2>
-        </div>
-        <div class="center-section">
-          <nav>
+  <header id="navbar">
+    <div class="logo">
+      <img src="images/logo.png.webp" alt="Logo" />
+      <h2>COURSE</h2>
+    </div>
+    <div class="center-section">
+      <nav>
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="About.html">ABOUT US</a></li>
+          <li>
+            <a href="courses.html">COURSES</a>
             <ul>
-              <li>HOME</li>
-              <li>ABOUT US</li>
-              <li>
-                COURSES
-                <ul>
-                  <li>Web Development</li>
-                  <li>Graphic Design</li>
-                  <li>Data Science</li>
-                  <li>Marketing</li>
-                </ul>
-              </li>
-              <li>TEACHER</li>
-              <li>STORIES</li>
-              <li>CONTACT</li>
+              <li>Web Development</li>
+              <li>Graphic Design</li>
+              <li>Data Science</li>
+              <li>Marketing</li>
             </ul>
-          </nav>
-          <div class="contact">
-            <i class="fas fa-phone"></i>
-            +43 4566 7788 2457
+          </li>
+          <li><a href="teacher.html">TEACHER</a></li>
+          <li><a href="stories.html">STORIES</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+        </ul>
+      </nav>
+      <div class="contact">
+        <i class="fas fa-phone"></i>
+        +43 4566 7788 2457
+      </div>
+    </div>
+  </header>
+
+  <div class="course-hero">
+    <h1>Explore Our Courses</h1>
+    <p>Discover a wide range of courses designed to help you achieve your career goals. Learn from industry experts and join a community of passionate learners.</p>
+  </div>
+
+  <div class="container">
+    <h2 class="section-title">Featured Courses</h2>
+    <div class="courses-container">
+      <!-- Course 1 -->
+      <div class="course-card">
+        <div class="course-image">
+          <img src="images/download.jfif" alt="Web Development">
+        </div>
+        <div class="course-content">
+          <h3>Full Stack Web Development</h3>
+          <div class="course-meta">
+            <span class="course-price">$299</span>
+            <span class="course-duration"><i class="far fa-clock"></i> 12 Weeks</span>
+          </div>
+          <p class="course-description">Master modern web development with HTML5, CSS3, JavaScript, React, Node.js, and MongoDB. Build responsive websites and web applications.</p>
+          <a href="#" class="enroll-btn">Enroll Now</a>
+        </div>
+      </div>
+      
+      <!-- Course 2 -->
+      <div class="course-card">
+        <div class="course-image">
+          <img src="images/download (1).jfif" alt="Data Science">
+        </div>
+        <div class="course-content">
+          <h3>Data Science Fundamentals</h3>
+          <div class="course-meta">
+            <span class="course-price">$349</span>
+            <span class="course-duration"><i class="far fa-clock"></i> 16 Weeks</span>
+          </div>
+          <p class="course-description">Learn Python for data analysis, machine learning, data visualization, and statistical modeling. Work with real-world datasets.</p>
+          <a href="#" class="enroll-btn">Enroll Now</a>
+        </div>
+      </div>
+      
+      <!-- Course 3 -->
+      <div class="course-card">
+        <div class="course-image">
+          <img src="images/images.jfif" alt="Graphic Design">
+        </div>
+        <div class="course-content">
+          <h3>Advanced Graphic Design</h3>
+          <div class="course-meta">
+            <span class="course-price">$249</span>
+            <span class="course-duration"><i class="far fa-clock"></i> 10 Weeks</span>
+          </div>
+          <p class="course-description">Master Adobe Photoshop, Illustrator, and InDesign. Learn typography, branding, and visual communication principles.</p>
+          <a href="#" class="enroll-btn">Enroll Now</a>
+        </div>
+      </div>
+      
+      <!-- Course 4 -->
+      <div class="course-card">
+        <div class="course-image">
+          <img src="images/marketing.png" alt="Digital Marketing">
+        </div>
+        <div class="course-content">
+          <h3>Digital Marketing Mastery</h3>
+          <div class="course-meta">
+            <span class="course-price">$279</span>
+            <span class="course-duration"><i class="far fa-clock"></i> 8 Weeks</span>
+          </div>
+          <p class="course-description">Learn SEO, social media marketing, content marketing, email marketing, and Google Analytics to grow businesses online.</p>
+          <a href="#" class="enroll-btn">Enroll Now</a>
+        </div>
+      </div>
+      
+      <!-- Course 5 -->
+      <div class="course-card">
+        <div class="course-image">
+          <img src="images/mobaileapp.jfif" alt="Mobile Development">
+        </div>
+        <div class="course-content">
+          <h3>Mobile App Development</h3>
+          <div class="course-meta">
+            <span class="course-price">$329</span>
+            <span class="course-duration"><i class="far fa-clock"></i> 14 Weeks</span>
+          </div>
+          <p class="course-description">Build cross-platform mobile applications using React Native and Flutter. Learn app design, development, and deployment.</p>
+          <a href="#" class="enroll-btn">Enroll Now</a>
+        </div>
+      </div>
+      
+      <!-- Course 6 -->
+      <div class="course-card">
+        <div class="course-image">
+          <img src="images/syber.jfif" alt="Cybersecurity">
+        </div>
+        <div class="course-content">
+          <h3>Cybersecurity Essentials</h3>
+          <div class="course-meta">
+            <span class="course-price">$399</span>
+            <span class="course-duration"><i class="far fa-clock"></i> 20 Weeks</span>
+          </div>
+          <p class="course-description">Learn ethical hacking, network security, cryptography, and risk management to protect systems from cyber threats.</p>
+          <a href="#" class="enroll-btn">Enroll Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="top-courses">
+    <div class="container">
+      <h2 class="section-title">Top Courses of Last Year</h2>
+      <div class="top-course-container">
+        <!-- Top Course 1 -->
+        <div class="top-course-card">
+          <div class="top-course-header">
+            #1 - Full Stack Web Development
+          </div>
+          <div class="top-course-body">
+            <h4>Course Highlights:</h4>
+            <ul>
+              <li>98% Satisfaction Rate</li>
+              <li>87% Job Placement</li>
+              <li>Average Salary: $85,000</li>
+            </ul>
+            
+            <h4 style="margin-top: 20px;">Top Performers:</h4>
+            <div class="topper">
+              <div class="topper-image">
+                <img src="images/sara.jfif" alt="Sarah Johnson">
+              </div>
+              <div class="topper-info">
+                <h4>Sarah Johnson</h4>
+                <p>Final Score: <span class="topper-score">98.7%</span></p>
+                <p>Now working at Google</p>
+              </div>
+            </div>
+            
+            <div class="topper">
+              <div class="topper-image">
+                <img src="images/malemodal.jfif" alt="Michael Chen">
+              </div>
+              <div class="topper-info">
+                <h4>Michael Chen</h4>
+                <p>Final Score: <span class="topper-score">97.2%</span></p>
+                <p>Now working at Amazon</p>
+              </div>
+            </div>
           </div>
         </div>
-      </header>
-      
- <section>
-  <div class="newsletter-section">
-    <div class="line"></div>
-    <h2>Subscribe to newsletter</h2>
-    <div class="form-container">
-      <input type="email" placeholder="Email Address" />
-      <button>Subscribe</button> 
-    </div>
-  </div>
-  <hr>
-  <footer>
-    
-    <div class="footer-container">
-     
-      <div class="footer-col">
-        <div class="footer-logo">
-          <img src="images/logo.png.webp" alt="Logo" />
-          <h2>COURSE</h2>
+        
+        <!-- Top Course 2 -->
+        <div class="top-course-card">
+          <div class="top-course-header">
+            #2 - Data Science Fundamentals
+          </div>
+          <div class="top-course-body">
+            <h4>Course Highlights:</h4>
+            <ul>
+              <li>95% Satisfaction Rate</li>
+              <li>82% Job Placement</li>
+              <li>Average Salary: $92,000</li>
+            </ul>
+            
+            <h4 style="margin-top: 20px;">Top Performers:</h4>
+            <div class="topper">
+              <div class="topper-image">
+                <img src="images/priya.jfif" alt="Priya Patel">
+              </div>
+              <div class="topper-info">
+                <h4>Priya Patel</h4>
+                <p>Final Score: <span class="topper-score">99.1%</span></p>
+                <p>Now working at Microsoft</p>
+              </div>
+            </div>
+            
+            <div class="topper">
+              <div class="topper-image">
+                <img src="images/devid.jfif" alt="David Kim">
+              </div>
+              <div class="topper-info">
+                <h4>David Kim</h4>
+                <p>Final Score: <span class="topper-score">96.8%</span></p>
+                <p>Now working at Facebook</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <p class="footer-text">
-          In aliquam, augue a gravida rutrum, ante nisl fermentum nulla, vitae tempor nisl ligula vel nunc. Proin quis mi malesuada, finibus tortor fermentum, tempor lacus.
-        </p>
-      </div>
-  
-     
-      <div class="footer-col">
-        <h3>Menu</h3>
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Courses</a></li>
-          <li><a href="#">News</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </div>
-  
-     
-      <div class="footer-col">
-        <h3>Usefull Links</h3>
-        <ul>
-          <li><a href="#">Testimonials</a></li>
-          <li><a href="#">FAQ</a></li>
-          <li><a href="#">Community</a></li>
-          <li><a href="#">Campus Pictures</a></li>
-          <li><a href="#">Tuitions</a></li>
-        </ul>
-      </div>
-  
-           <div class="footer-col contact-info">
-        <h3>Contact</h3>
-        <p><i class="fas fa-map-marker-alt"></i>DHA Phase 5 Karachi</p>
-        <p><i class="fas fa-phone-alt"></i>0307 4360 673</p>
-        <p><i class="fas fa-envelope"></i>shandeveloper24@gmail.com</p>
+        
+        <!-- Top Course 3 -->
+        <div class="top-course-card">
+          <div class="top-course-header">
+            #3 - Cybersecurity Essentials
+          </div>
+          <div class="top-course-body">
+            <h4>Course Highlights:</h4>
+            <ul>
+              <li>94% Satisfaction Rate</li>
+              <li>90% Job Placement</li>
+              <li>Average Salary: $105,000</li>
+            </ul>
+            
+            <h4 style="margin-top: 20px;">Top Performers:</h4>
+            <div class="topper">
+              <div class="topper-image">
+                <img src="images/james.jfif" alt="James Wilson">
+              </div>
+              <div class="topper-info">
+                <h4>James Wilson</h4>
+                <p>Final Score: <span class="topper-score">98.5%</span></p>
+                <p>Now working at IBM Security</p>
+              </div>
+            </div>
+            
+            <div class="topper">
+              <div class="topper-image">
+                <img src="images/emma.jfif" alt="Emma Rodriguez">
+              </div>
+              <div class="topper-info">
+                <h4>Emma Rodriguez</h4>
+                <p>Final Score: <span class="topper-score">97.9%</span></p>
+                <p>Now working at Cisco</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  
-<div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; padding-top: 20px; color: #aaa; font-size: 14px; border-top: 1px solid #333;">
-  <div>
-    Copyright ©2025 All rights reserved | This template is made with 
-    <i class="fas fa-heart" style="color: #ffb300;"></i> by <a href="#" style="color: #ffb300; text-decoration: none;">AGHA SHAN</a>
   </div>
-  <div class="social-icons" style="margin-top: 10px;">
-    <a href="#"><i class="fab fa-pinterest"></i></a>
-    <a href="#"><i class="fab fa-linkedin"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
-    <a href="#"><i class="fab fa-facebook"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-  </div>
-</div>
-  </footer>
-</section>
+
+  <section>
+    <div class="newsletter-section">
+      <div class="line"></div>
+      <h2>Subscribe to newsletter</h2>
+      <div class="form-container">
+        <input type="email" placeholder="Email Address" />
+        <button>Subscribe</button> 
+      </div>
+    </div>
+    <hr>
+    <footer>
+      
+      <div class="footer-container">
+       
+        <div class="footer-col">
+          <div class="footer-logo">
+            <img src="images/logo.png.webp" alt="Logo" />
+            <h2>COURSE</h2>
+          </div>
+          <p class="footer-text">
+            In aliquam, augue a gravida rutrum, ante nisl fermentum nulla, vitae tempor nisl ligula vel nunc. Proin quis mi malesuada, finibus tortor fermentum, tempor lacus.
+          </p>
+        </div>
+    
+       
+        <div class="footer-col">
+          <h3>Menu</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="About.html">About Us</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="teacher.html">Teachers</a></li>
+            <li><a href="storries.html">Stories</a></li>
+            <li><a href="Contact.html">Contact</a></li>
+          </ul>
+        </div>
+    
+       
+        <div class="footer-col">
+          <h3>Usefull Links</h3>
+          <ul>
+            <li><a href="#">Testimonials</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Community</a></li>
+            <li><a href="#">Campus Pictures</a></li>
+            <li><a href="#">Tuitions</a></li>
+          </ul>
+        </div>
+    
+             <div class="footer-col contact-info">
+          <h3>Contact</h3>
+          <p><i class="fas fa-map-marker-alt"></i>DHA Phase 5 Karachi</p>
+          <p><i class="fas fa-phone-alt"></i>0307 4360 673</p>
+          <p><i class="fas fa-envelope"></i>shandeveloper24@gmail.com</p>
+        </div>
+      </div>
+    
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; padding-top: 20px; color: #aaa; font-size: 14px; border-top: 1px solid #333;">
+      <div>
+        Copyright ©2025 All rights reserved | This template is made with 
+        <i class="fas fa-heart" style="color: #ffb300;"></i> by <a href="#" style="color: #ffb300; text-decoration: none;">AGHA SHAN</a>
+      </div>
+      <div class="social-icons" style="margin-top: 10px;">
+        <a href="#"><i class="fab fa-pinterest"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
+    </footer>
+  </section>
       <script>
         window.addEventListener('scroll', () => {
           const navbar = document.getElementById('navbar');
