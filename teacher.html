@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Distinguished Faculty | COURSE College</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --accent: #ffb300;
+            --light: #f9f9f9;
+            --dark: #333;
+            --gray: #7f8c8d;
+            --white: #fff;
+            --shadow: 0 5px 15px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 150px 20px 100px;
+            margin-bottom: 50px;
+        }
+        
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Teachers Section */
+        .teachers-intro {
+            max-width: 1200px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+            text-align: center;
+        }
+        
+        .teachers-intro h2 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .teachers-intro h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 4px;
+            background: var(--primary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .teachers-intro p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Teachers Grid */
+        .teachers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
+        }
+        
+        .teacher-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .teacher-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .teacher-img {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .teacher-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .teacher-card:hover .teacher-img img {
+            transform: scale(1.1);
+        }
+        
+        .teacher-info {
+            padding: 20px;
+        }
+        
+        .teacher-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+        
+        .teacher-title {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .teacher-bio {
+            color: var(--gray);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .read-more {
+            color: var(--accent);
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background: var(--white);
+            max-width: 800px;
+            margin: 50px auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+            animation: modalFadeIn 0.3s ease;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .modal-header {
+            position: relative;
+        }
+        
+        .modal-img {
+            height: 350px;
+            overflow: hidden;
+        }
+        
+        .modal-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            transition: var(--transition);
+        }
+        
+        .close-modal:hover {
+            background: var(--accent);
+            color: var(--white);
+        }
+        
+        .modal-body {
+            padding: 30px;
+        }
+        
+        .modal-body h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+        
+        .modal-body .teacher-title {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .modal-body p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+        
+        .teacher-stats {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            background: var(--light);
+            padding: 15px;
+            border-radius: 8px;
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .stat-item h4 {
+            color: var(--primary);
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .stat-item p {
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        /* Department Sections */
+        .department {
+            margin-bottom: 60px;
+        }
+        
+        .department h3 {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .department h3::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background: var(--accent);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .teachers-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                margin: 20px auto;
+            }
+            
+            .modal-img {
+                height: 250px;
+            }
+        }
+        
+        /* Footer (from your code) */
+        .newsletter-section {
+            text-align: center;
+            padding: 60px 0;
+            background-color: var(--secondary);
+            color: var(--white);
+        }
+        
+        .newsletter-section .line {
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+            margin: 0 auto 20px;
+        }
+        
+        .newsletter-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .form-container {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .form-container input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 8px 0 0 8px;
+            font-size: 1rem;
+        }
+        
+        .form-container button {
+            padding: 15px 25px;
+            background-color: var(--accent);
+            color: var(--secondary);
+            border: none;
+            border-radius: 0 8px 8px 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .form-container button:hover {
+            background-color: #ffc107;
+        }
+        
+        hr {
+            border: none;
+            height: 1px;
+            background-color: rgba(255,255,255,0.2);
+            margin: 0;
+        }
+        
+        footer {
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 60px 0 0;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo img {
+            height: 40px;
+        }
+        
+        .footer-logo h2 {
+            font-size: 1.5rem;
+        }
+        
+        .footer-text {
+            color: #aaa;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            color: #aaa;
+            transition: var(--transition);
+        }
+        
+        .footer-col ul li a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+        
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            color: #aaa;
+        }
+        
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 20px;
+            color: #aaa;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-bottom a {
+            color: var(--accent);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: var(--transition);
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--accent);
+            color: var(--secondary);
+        }
+    </style>
+</head>
+<body>
+    <header id="navbar">
+        <div class="logo">
+          <img src="images/logo.png.webp" alt="Logo" />
+          <h2>COURSE</h2>
+        </div>
+        <div class="center-section">
+          <nav>
+            <ul>
+              <li>HOME</li>
+              <li>ABOUT US</li>
+              <li>
+                COURSES
+                <ul>
+                  <li>Web Development</li>
+                  <li>Graphic Design</li>
+                  <li>Data Science</li>
+                  <li>Marketing</li>
+                </ul>
+              </li>
+              <li>TEACHER</li>
+              <li>STORIES</li>
+              <li>CONTACT</li>
+            </ul>
+          </nav>
+          <div class="contact">
+            <i class="fas fa-phone"></i>
+            +43 4566 7788 2457
+          </div>
+        </div>
+      </header>
+
+    <div class="teachers-intro">
+        <h2>The Heart of Our Institution</h2>
+        <p>At COURSE College, our faculty members are more than just teachers - they're mentors, researchers, and industry leaders dedicated to providing transformative educational experiences. With an average of 15 years teaching experience and 80% holding terminal degrees in their fields, our faculty brings both academic excellence and real-world expertise to the classroom.</p>
+    </div>
+
+    <div class="department">
+        <h3>Computer Science Department</h3>
+        <div class="teachers-grid">
+            <!-- Teacher 1 -->
+            <div class="teacher-card" onclick="openModal('modal1')">
+                <div class="teacher-img">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Dr. Sarah Johnson">
+                </div>
+                <div class="teacher-info">
+                    <h3>Dr. Sarah Johnson</h3>
+                    <div class="teacher-title">Professor of Artificial Intelligence</div>
+                    <p class="teacher-bio">With over 20 publications in machine learning and neural networks, Dr. Johnson leads our AI research initiatives. Her work on ethical AI has been recognized internationally...</p>
+                    <span class="read-more">Read full bio →</span>
+                </div>
+            </div>
+
+            <!-- Teacher 2 -->
+            <div class="teacher-card" onclick="openModal('modal2')">
+                <div class="teacher-img">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Prof. Michael Chen">
+                </div>
+                <div class="teacher-info">
+                    <h3>Prof. Michael Chen</h3>
+                    <div class="teacher-title">Head of Software Engineering</div>
+                    <p class="teacher-bio">Former lead developer at TechCorp, Prof. Chen brings 15 years of industry experience to his teaching. He specializes in scalable systems and cloud architecture...</p>
+                    <span class="read-more">Read full bio →</span>
+                </div>
+            </div>
+
+            <!-- Teacher 3 -->
+            <div class="teacher-card" onclick="openModal('modal3')">
+                <div class="teacher-img">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Dr. Priya Patel">
+                </div>
+                <div class="teacher-info">
+                    <h3>Dr. Priya Patel</h3>
+                    <div class="teacher-title">Cybersecurity Expert</div>
+                    <p class="teacher-bio">With certifications in ethical hacking and digital forensics, Dr. Patel has helped secure systems for government agencies and Fortune 500 companies alike...</p>
+                    <span class="read-more">Read full bio →</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="department">
+        <h3>Business & Economics</h3>
+        <div class="teachers-grid">
+            <!-- Teacher 4 -->
+            <div class="teacher-card" onclick="openModal('modal4')">
+                <div class="teacher-img">
+                    <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Prof. David Wilson">
+                </div>
+                <div class="teacher-info">
+                    <h3>Prof. David Wilson</h3>
+                    <div class="teacher-title">Dean of Business Studies</div>
+                    <p class="teacher-bio">An entrepreneur who built and sold two successful startups, Prof. Wilson teaches strategic management and business innovation with real-world case studies...</p>
+                    <span class="read-more">Read full bio →</span>
+                </div>
+            </div>
+
+            <!-- Teacher 5 -->
+            <div class="teacher-card" onclick="openModal('modal5')">
+                <div class="teacher-img">
+                    <img src="https://randomuser.me/api/portraits/women/50.jpg" alt="Dr. Emily Zhang">
+                </div>
+                <div class="teacher-info">
+                    <h3>Dr. Emily Zhang</h3>
+                    <div class="teacher-title">Financial Economics</div>
+                    <p class="teacher-bio">Former economic advisor to the Federal Reserve, Dr. Zhang's research on monetary policy has been cited in congressional hearings and central bank decisions...</p>
+                    <span class="read-more">Read full bio →</span>
+                </div>
+            </div>
+
+            <!-- Teacher 6 -->
+            <div class="teacher-card" onclick="openModal('modal6')">
+                <div class="teacher-img">
+                    <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Prof. James Rodriguez">
+                </div>
+                <div class="teacher-info">
+                    <h3>Prof. James Rodriguez</h3>
+                    <div class="teacher-title">Marketing Strategy</div>
+                    <p class="teacher-bio">With award-winning campaigns for global brands, Prof. Rodriguez bridges the gap between academic marketing theory and cutting-edge digital practice...</p>
+                    <span class="read-more">Read full bio →</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Modal 1 -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-img">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Dr. Sarah Johnson">
+                </div>
+                <span class="close-modal" onclick="closeModal('modal1')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h2>Dr. Sarah Johnson</h2>
+                <div class="teacher-title">Professor of Artificial Intelligence | PhD Stanford University</div>
+                
+                <div class="teacher-stats">
+                    <div class="stat-item">
+                        <h4>Years Teaching</h4>
+                        <p>18</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>Publications</h4>
+                        <p>24</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>Awards</h4>
+                        <p>7</p>
+                    </div>
+                </div>
+                
+                <p>Dr. Johnson joined COURSE College in 2010 after completing her postdoctoral research at MIT's Computer Science and Artificial Intelligence Laboratory. Her groundbreaking work on explainable AI systems has helped bridge the gap between complex machine learning models and human interpretability.</p>
+                
+                <p>Before entering academia, Dr. Johnson worked as a lead researcher at DeepMind, where she contributed to projects that advanced natural language processing capabilities. She brings this industry experience into the classroom, ensuring students understand both the theoretical foundations and practical applications of AI.</p>
+                
+                <p>In 2022, Dr. Johnson was awarded the prestigious Turing Fellowship for her contributions to ethical AI development. She currently leads the college's Responsible AI Initiative, which brings together students, faculty, and industry partners to address challenges in algorithmic fairness and transparency.</p>
+                
+                <p>Outside the classroom, Dr. Johnson enjoys mentoring undergraduate research projects and has supervised over 50 student publications in top-tier conferences. Her teaching philosophy emphasizes hands-on learning, and she regularly incorporates real-world datasets and problems into her coursework.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2 -->
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-img">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Prof. Michael Chen">
+                </div>
+                <span class="close-modal" onclick="closeModal('modal2')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h2>Prof. Michael Chen</h2>
+                <div class="teacher-title">Head of Software Engineering | MS Carnegie Mellon</div>
+                
+                <div class="teacher-stats">
+                    <div class="stat-item">
+                        <h4>Years in Industry</h4>
+                        <p>15</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>Patents</h4>
+                        <p>5</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>Startups Founded</h4>
+                        <p>2</p>
+                    </div>
+                </div>
+                
+                <p>Professor Chen brings a wealth of practical experience to his teaching, having served as Principal Engineer at TechCorp where he led the development of their flagship cloud platform serving over 10 million users worldwide. His transition to academia in 2018 was driven by a passion for educating the next generation of software architects.</p>
+                
+                <p>At COURSE College, Prof. Chen developed the innovative "Software Studio" course where student teams work on semester-long projects for real clients. This program has resulted in several student-founded startups and has been recognized by the ACM for excellence in engineering education.</p>
+                
+                <p>His research focuses on distributed systems reliability, and he regularly consults for major tech companies on scaling challenges. Prof. Chen is known for his engaging teaching style that combines war stories from Silicon Valley with rigorous computer science fundamentals.</p>
+                
+                <p>Beyond the classroom, Prof. Chen serves as faculty advisor to the college's hackathon team, which has won multiple national competitions under his guidance. He also leads industry networking events that have helped over 200 students secure internships at top tech firms.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional modals would follow the same pattern for other teachers -->
+
+    <section>
+        <div class="newsletter-section">
+            <div class="line"></div>
+            <h2>Subscribe to newsletter</h2>
+            <div class="form-container">
+                <input type="email" placeholder="Email Address" />
+                <button>Subscribe</button> 
+            </div>
+        </div>
+        <hr>
+        <footer>
+            <div class="footer-container">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="images/logo.png.webp" alt="Logo" />
+                        <h2>COURSE</h2>
+                    </div>
+                    <p class="footer-text">
+                        In aliquam, augue a gravida rutrum, ante nisl fermentum nulla, vitae tempor nisl ligula vel nunc. Proin quis mi malesuada, finibus tortor fermentum, tempor lacus.
+                    </p>
+                </div>
+            
+                <div class="footer-col">
+                    <h3>Menu</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="teachers.html">Teachers</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            
+                <div class="footer-col">
+                    <h3>Usefull Links</h3>
+                    <ul>
+                        <li><a href="#">Testimonials</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">Campus Pictures</a></li>
+                        <li><a href="#">Tuitions</a></li>
+                    </ul>
+                </div>
+            
+                <div class="footer-col contact-info">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-map-marker-alt"></i>DHA Phase 5 Karachi</p>
+                    <p><i class="fas fa-phone-alt"></i>0307 4360 673</p>
+                    <p><i class="fas fa-envelope"></i>shandeveloper24@gmail.com</p>
+                </div>
+            </div>
+        
+            <div class="footer-bottom">
+                <div>
+                    Copyright ©2025 All rights reserved | This template is made with 
+                    <i class="fas fa-heart" style="color: #ffb300;"></i> by <a href="#" style="color: #ffb300; text-decoration: none;">AGHA SHAN</a>
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </footer>
+    </section>
+
+    <script>
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close modal when clicking outside content
+        window.onclick = function(event) {
+            if (event.target.className === 'modal') {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+        
+        // Navbar scroll effect (from your code)
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

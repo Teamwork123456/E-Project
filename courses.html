@@ -3,127 +3,988 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>Our Courses</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
    
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <style>
+        /* ===== Base Styles ===== */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #ffb300;
+            --text-color: #333;
+            --light-gray: #f9f9f9;
+            --medium-gray: #e0e0e0;
+            --dark-gray: #7f8c8d;
+            --white: #ffffff;
+            --success-color: #2ecc71;
+            --danger-color: #e74c3c;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --border-radius: 8px;
+            --max-width: 1200px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--light-gray);
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section-padding {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 4px;
+            background: var(--primary-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            color: var(--dark-gray);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(41, 128, 185, 0.3);
+        }
+        
+        /* ===== Navbar (from your code) ===== */
+        #navbar {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: var(--transition);
+            padding: 15px 0;
+        }
+        
+        #navbar.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo img {
+            height: 40px;
+        }
+        
+        .logo h2 {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            font-weight: 700;
+        }
+        
+        .center-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        nav ul {
+            display: flex;
+            gap: 25px;
+        }
+        
+        nav ul li {
+            position: relative;
+            padding: 10px 0;
+        }
+        
+        nav ul li a {
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        nav ul li:hover > a {
+            color: var(--primary-color);
+        }
+        
+        /* Dropdown Menu */
+        nav ul li ul {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            width: 200px;
+            box-shadow: var(--box-shadow);
+            border-radius: var(--border-radius);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: var(--transition);
+            z-index: 100;
+        }
+        
+        nav ul li:hover > ul {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        nav ul li ul li {
+            padding: 0;
+        }
+        
+        nav ul li ul li a {
+            padding: 10px 20px;
+            display: block;
+            color: var(--text-color);
+        }
+        
+        nav ul li ul li a:hover {
+            background: var(--light-gray);
+            color: var(--primary-color);
+        }
+        
+        .contact {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 10px 15px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .contact:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(41, 128, 185, 0.3);
+        }
+        
+        /* ===== Hero Section ===== */
+        .courses-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--white);
+            text-align: center;
+            padding: 180px 20px 100px;
+            margin-bottom: 50px;
+        }
+        
+        .courses-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+        }
+        
+        .courses-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s ease;
+        }
+        
+        /* ===== Course Cards ===== */
+        .course-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+            padding: 0 5%;
+        }
+        
+        .course-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .course-img {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .course-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .course-card:hover .course-img img {
+            transform: scale(1.1);
+        }
+        
+        .course-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .course-content {
+            padding: 25px;
+        }
+        
+        .course-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+        
+        .course-content p {
+            color: var(--dark-gray);
+            margin-bottom: 20px;
+        }
+        
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+        
+        .course-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .course-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--danger-color);
+            margin: 15px 0;
+        }
+        
+        .btn-enroll {
+            display: inline-block;
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-enroll:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(41, 128, 185, 0.3);
+        }
+        
+        /* ===== Top Performers Section ===== */
+        .top-performers {
+            background-color: var(--white);
+            padding: 80px 0;
+        }
+        
+        .performers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 0 5%;
+        }
+        
+        .performer-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            padding: 30px 20px;
+            transition: var(--transition);
+            border: 1px solid var(--medium-gray);
+        }
+        
+        .performer-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .performer-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px;
+            border: 5px solid var(--light-gray);
+            transition: var(--transition);
+        }
+        
+        .performer-card:hover .performer-img {
+            border-color: var(--primary-color);
+        }
+        
+        .performer-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .performer-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+        
+        .performer-course {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin: 10px 0;
+            font-size: 0.9rem;
+        }
+        
+        .rating {
+            color: var(--accent-color);
+            margin: 10px 0;
+            font-size: 0.9rem;
+        }
+        
+        .performer-quote {
+            font-style: italic;
+            color: var(--dark-gray);
+            margin: 15px 0;
+            position: relative;
+        }
+        
+        .performer-quote::before,
+        .performer-quote::after {
+            content: '"';
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        .performer-card p:last-child {
+            font-size: 0.9rem;
+            margin-top: 15px;
+            color: var(--secondary-color);
+        }
+        
+        .performer-card p:last-child strong {
+            color: var(--text-color);
+        }
+        
+        /* ===== Newsletter ===== */
+        .newsletter-section {
+            text-align: center;
+            padding: 60px 0;
+            background-color: var(--secondary-color);
+            color: var(--white);
+        }
+        
+        .newsletter-section .line {
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+            margin: 0 auto 20px;
+        }
+        
+        .newsletter-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .form-container {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .form-container input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            font-size: 1rem;
+        }
+        
+        .form-container button {
+            padding: 15px 25px;
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+            border: none;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .form-container button:hover {
+            background-color: #ffc107;
+        }
+        
+        /* ===== Footer ===== */
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 60px 0 0;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+            padding: 0 5%;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo img {
+            height: 40px;
+        }
+        
+        .footer-logo h2 {
+            font-size: 1.5rem;
+            color: var(--white);
+        }
+        
+        .footer-text {
+            color: #aaa;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            color: #aaa;
+            transition: var(--transition);
+        }
+        
+        .footer-col ul li a:hover {
+            color: var(--accent-color);
+            padding-left: 5px;
+        }
+        
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            color: #aaa;
+        }
+        
+        .contact-info i {
+            color: var(--accent-color);
+            width: 20px;
+        }
+        
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 20px 5%;
+            color: #aaa;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-bottom a {
+            color: var(--accent-color);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: var(--transition);
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        /* ===== Animations ===== */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* ===== Responsive Styles ===== */
+        @media (max-width: 992px) {
+            .courses-hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 60px 0;
+            }
+            
+            .courses-hero {
+                padding: 150px 20px 80px;
+            }
+            
+            .courses-hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .course-cards {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            
+            .form-container {
+                flex-direction: column;
+            }
+            
+            .form-container input,
+            .form-container button {
+                width: 100%;
+                border-radius: var(--border-radius);
+            }
+            
+            .form-container input {
+                margin-bottom: 10px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .courses-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-    
-
     <header id="navbar">
         <div class="logo">
-          <img src="images/logo.png.webp" alt="Logo" />
-          <h2>COURSE</h2>
+            <img src="images/logo.png.webp" alt="Logo" />
+            <h2>COURSE</h2>
         </div>
         <div class="center-section">
-          <nav>
-            <ul>
-              <li>HOME</li>
-              <li>ABOUT US</li>
-              <li>
-                COURSES
+            <nav>
                 <ul>
-                  <li>Web Development</li>
-                  <li>Graphic Design</li>
-                  <li>Data Science</li>
-                  <li>Marketing</li>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="about.html">ABOUT US</a></li>
+                    <li>
+                        <a href="courses.html">COURSES</a>
+                        <ul>
+                            <li><a href="#web-dev">Web Development</a></li>
+                            <li><a href="#graphic-design">Graphic Design</a></li>
+                            <li><a href="#data-science">Data Science</a></li>
+                            <li><a href="#marketing">Marketing</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="teachers.html">TEACHER</a></li>
+                    <li><a href="stories.html">STORIES</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
                 </ul>
-              </li>
-              <li>TEACHER</li>
-              <li>STORIES</li>
-              <li>CONTACT</li>
-            </ul>
-          </nav>
-          <div class="contact">
-            <i class="fas fa-phone"></i>
-            +43 4566 7788 2457
-          </div>
+            </nav>
+            <div class="contact">
+                <i class="fas fa-phone"></i>
+                +43 4566 7788 2457
+            </div>
         </div>
-      </header>
-      
- <section>
-  <div class="newsletter-section">
-    <div class="line"></div>
-    <h2>Subscribe to newsletter</h2>
-    <div class="form-container">
-      <input type="email" placeholder="Email Address" />
-      <button>Subscribe</button> 
-    </div>
-  </div>
-  <hr>
-  <footer>
-    
-    <div class="footer-container">
-     
-      <div class="footer-col">
-        <div class="footer-logo">
-          <img src="images/logo.png.webp" alt="Logo" />
-          <h2>COURSE</h2>
-        </div>
-        <p class="footer-text">
-          In aliquam, augue a gravida rutrum, ante nisl fermentum nulla, vitae tempor nisl ligula vel nunc. Proin quis mi malesuada, finibus tortor fermentum, tempor lacus.
-        </p>
-      </div>
-  
-     
-      <div class="footer-col">
-        <h3>Menu</h3>
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Courses</a></li>
-          <li><a href="#">News</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </div>
-  
-     
-      <div class="footer-col">
-        <h3>Usefull Links</h3>
-        <ul>
-          <li><a href="#">Testimonials</a></li>
-          <li><a href="#">FAQ</a></li>
-          <li><a href="#">Community</a></li>
-          <li><a href="#">Campus Pictures</a></li>
-          <li><a href="#">Tuitions</a></li>
-        </ul>
-      </div>
-  
-           <div class="footer-col contact-info">
-        <h3>Contact</h3>
-        <p><i class="fas fa-map-marker-alt"></i>DHA Phase 5 Karachi</p>
-        <p><i class="fas fa-phone-alt"></i>0307 4360 673</p>
-        <p><i class="fas fa-envelope"></i>shandeveloper24@gmail.com</p>
-      </div>
-    </div>
-  
-<div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; padding-top: 20px; color: #aaa; font-size: 14px; border-top: 1px solid #333;">
-  <div>
-    Copyright ©2025 All rights reserved | This template is made with 
-    <i class="fas fa-heart" style="color: #ffb300;"></i> by <a href="#" style="color: #ffb300; text-decoration: none;">AGHA SHAN</a>
-  </div>
-  <div class="social-icons" style="margin-top: 10px;">
-    <a href="#"><i class="fab fa-pinterest"></i></a>
-    <a href="#"><i class="fab fa-linkedin"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
-    <a href="#"><i class="fab fa-facebook"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-  </div>
-</div>
-  </footer>
-</section>
-      <script>
-        window.addEventListener('scroll', () => {
-          const navbar = document.getElementById('navbar');
-          if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-          } else {
-            navbar.classList.remove('scrolled');
-          }
-        });
-      </script>
+    </header>
 
+    <section class="courses-hero">
+        <h1>Our Courses</h1>
+        <p>Learn from industry experts and transform your career</p>
+    </section>
+
+    <section class="courses-container">
+        <div class="course-cards">
+            <!-- Web Development Course -->
+            <div class="course-card" id="web-dev">
+                <div class="course-img">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Web Development">
+                    <span class="course-badge">BESTSELLER</span>
+                </div>
+                <div class="course-content">
+                    <h3>Web Development</h3>
+                    <p>Master the skills needed to build modern, responsive websites and web applications using the latest technologies.</p>
+                    <div class="course-meta">
+                        <span><i class="far fa-clock"></i> 12 Weeks</span>
+                        <span><i class="fas fa-user-graduate"></i> Advanced</span>
+                    </div>
+                    <div class="course-price">$499</div>
+                    <button class="btn-enroll">Enroll Now</button>
+                </div>
+            </div>
+
+            <!-- Graphic Design Course -->
+            <div class="course-card" id="graphic-design">
+                <div class="course-img">
+                    <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80" alt="Graphic Design">
+                    <span class="course-badge">POPULAR</span>
+                </div>
+                <div class="course-content">
+                    <h3>Graphic Design</h3>
+                    <p>Learn professional design principles, tools, and techniques to create stunning visual content for print and digital media.</p>
+                    <div class="course-meta">
+                        <span><i class="far fa-clock"></i> 10 Weeks</span>
+                        <span><i class="fas fa-user-graduate"></i> Intermediate</span>
+                    </div>
+                    <div class="course-price">$399</div>
+                    <button class="btn-enroll">Enroll Now</button>
+                </div>
+            </div>
+
+            <!-- Data Science Course -->
+            <div class="course-card" id="data-science">
+                <div class="course-img">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Data Science">
+                    <span class="course-badge">NEW</span>
+                </div>
+                <div class="course-content">
+                    <h3>Data Science</h3>
+                    <p>Unlock the power of data with Python, machine learning, and statistical analysis to solve complex problems.</p>
+                    <div class="course-meta">
+                        <span><i class="far fa-clock"></i> 16 Weeks</span>
+                        <span><i class="fas fa-user-graduate"></i> Advanced</span>
+                    </div>
+                    <div class="course-price">$599</div>
+                    <button class="btn-enroll">Enroll Now</button>
+                </div>
+            </div>
+
+            <!-- Marketing Course -->
+            <div class="course-card" id="marketing">
+                <div class="course-img">
+                    <img src="https://images.unsplash.com/photo-1434626881859-194d67b2b86f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1474&q=80" alt="Marketing">
+                    <span class="course-badge">LIMITED</span>
+                </div>
+                <div class="course-content">
+                    <h3>Digital Marketing</h3>
+                    <p>Master SEO, social media, content marketing, and analytics to drive business growth in the digital age.</p>
+                    <div class="course-meta">
+                        <span><i class="far fa-clock"></i> 8 Weeks</span>
+                        <span><i class="fas fa-user-graduate"></i> Beginner</span>
+                    </div>
+                    <div class="course-price">$349</div>
+                    <button class="btn-enroll">Enroll Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="top-performers">
+        <div class="container">
+            <div class="section-title">
+                <h2>Last Year's Top Performers</h2>
+                <p>Meet our outstanding students who excelled in their courses</p>
+            </div>
+
+            <div class="performers-grid">
+                <!-- Web Development Top Performer -->
+                <div class="performer-card">
+                    <div class="performer-img">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Johnson">
+                    </div>
+                    <h3>Sarah Johnson</h3>
+                    <div class="performer-course">Web Development</div>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="performer-quote">"The course gave me the skills to land my dream job at a tech startup!"</p>
+                    <p><strong>Current Position:</strong> Frontend Developer at TechCorp</p>
+                </div>
+
+                <!-- Graphic Design Top Performer -->
+                <div class="performer-card">
+                    <div class="performer-img">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Michael Chen">
+                    </div>
+                    <h3>Michael Chen</h3>
+                    <div class="performer-course">Graphic Design</div>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="performer-quote">"The instructors' real-world experience made all the difference in my learning."</p>
+                    <p><strong>Current Position:</strong> Creative Director at DesignHub</p>
+                </div>
+
+                <!-- Data Science Top Performer -->
+                <div class="performer-card">
+                    <div class="performer-img">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Priya Patel">
+                    </div>
+                    <h3>Priya Patel</h3>
+                    <div class="performer-course">Data Science</div>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="performer-quote">"The hands-on projects were exactly what I needed to build my portfolio."</p>
+                    <p><strong>Current Position:</strong> Data Scientist at AnalyticsPro</p>
+                </div>
+
+                <!-- Marketing Top Performer -->
+                <div class="performer-card">
+                    <div class="performer-img">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="David Wilson">
+                    </div>
+                    <h3>David Wilson</h3>
+                    <div class="performer-course">Digital Marketing</div>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <p class="performer-quote">"I tripled my client base after implementing the strategies I learned here."</p>
+                    <p><strong>Current Position:</strong> Marketing Consultant (Self-Employed)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="newsletter-section">
+            <div class="line"></div>
+            <h2>Subscribe to newsletter</h2>
+            <div class="form-container">
+                <input type="email" placeholder="Email Address" />
+                <button>Subscribe</button> 
+            </div>
+        </div>
+        <hr>
+        <footer>
+            <div class="footer-container">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="images/logo.png.webp" alt="Logo" />
+                        <h2>COURSE</h2>
+                    </div>
+                    <p class="footer-text">
+                        In aliquam, augue a gravida rutrum, ante nisl fermentum nulla, vitae tempor nisl ligula vel nunc. Proin quis mi malesuada, finibus tortor fermentum, tempor lacus.
+                    </p>
+                </div>
+            
+                <div class="footer-col">
+                    <h3>Menu</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="news.html">News</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            
+                <div class="footer-col">
+                    <h3>Usefull Links</h3>
+                    <ul>
+                        <li><a href="#">Testimonials</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">Campus Pictures</a></li>
+                        <li><a href="#">Tuitions</a></li>
+                    </ul>
+                </div>
+            
+                <div class="footer-col contact-info">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-map-marker-alt"></i>DHA Phase 5 Karachi</p>
+                    <p><i class="fas fa-phone-alt"></i>0307 4360 673</p>
+                    <p><i class="fas fa-envelope"></i>shandeveloper24@gmail.com</p>
+                </div>
+            </div>
+        
+            <div class="footer-bottom">
+                <div>
+                    Copyright ©2025 All rights reserved | This template is made with 
+                    <i class="fas fa-heart" style="color: #ffb300;"></i> by <a href="#" style="color: #ffb300; text-decoration: none;">AGHA SHAN</a>
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </footer>
+    </section>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 </html>
